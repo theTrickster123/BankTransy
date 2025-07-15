@@ -1,6 +1,6 @@
 CREATE TABLE transaction (
 
-                             time_transaction CHARACTER VARYING NOT NULL,
+                             time_transaction TIMESTAMP,
 
                              from_bank VARCHAR(100),
                              from_account VARCHAR(30),

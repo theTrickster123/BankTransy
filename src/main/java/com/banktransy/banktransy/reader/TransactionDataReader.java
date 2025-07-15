@@ -41,7 +41,7 @@ public class TransactionDataReader  {
                         "time_transaction", "fromBank", "sourceAccount", "toBank", "destinationAccount",
                         "amount_received", "receiving_currency", "amount_paid", "payment_currency", "payment_format"
                 )
-                .targetType(Transaction.class)
+                .fieldSetMapper(new TransactionFieldSetMapper())
                 .linesToSkip(1)
                 .build();
     }

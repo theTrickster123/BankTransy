@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Transaction {
 
-    String time_transaction;
+    LocalDateTime time_transaction;
     String fromBank;
     String sourceAccount;
     String toBank;
