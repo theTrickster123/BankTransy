@@ -25,7 +25,7 @@ public class FakeTransactionTasklet  implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        log.warn("Input file not found: inserting a fake transaction.");
+        String message ="Input file not found: inserting a fake transaction";
         String sql = """
     INSERT INTO transaction (
         time_transaction,
@@ -37,15 +37,16 @@ public class FakeTransactionTasklet  implements Tasklet {
         receiving_currency,
         amount_paid,
         payment_currency,
-        payment_format
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        payment_format,
+        errors                    
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
 """;
 
         jdbcTemplate.update(sql,
-                Timestamp.from(Instant.now()), // 👈 fix ici
+                Timestamp.from(Instant.now()), // identify sql timestamp for jdbc api
                 "", "", "", "",
                 0.0, "",
-                0.0, "", "");
+                0.0, "", "",message);
 
         return RepeatStatus.FINISHED;
     }
